@@ -1,4 +1,7 @@
-import utils.RestHelper
+import models.BashEntry
+import play.api.libs.json.Json
+
+import scala.concurrent.ExecutionContext.Implicits.global
 
 /**
   * Main application
@@ -11,8 +14,8 @@ object Application {
     * @param args arguments from run
     */
   def main(args: Array[String]): Unit = {
-    val response = RestHelper.get("http://bash.org.pl")
+    val bashEntry = BashEntry.fromURL("http://bash.org.pl/4862636")
 
-    response.foreach(println)
+    println(Json.toJson(bashEntry))
   }
 }
