@@ -1,9 +1,10 @@
 import play.api.libs.json.Json
-import util.Bash
+import util.AppConfig.appConfig
+import util.{Bash, FileWriter}
 
 import scala.concurrent.Await
-import scala.concurrent.duration._
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
 
 /**
   * Aplikacja
@@ -17,8 +18,10 @@ object Application {
     */
   private def crawl(n: Int) = for {
     posts <- Bash.getLast(n)
-  } yield
-    println(Json.prettyPrint(Json.toJson(posts)))
+  } yield FileWriter.write(
+    pathname = appConfig.`output-file`,
+    text = Json.prettyPrint(Json.toJson(posts))
+  )
 
   /**
     * Główna klasa projektu

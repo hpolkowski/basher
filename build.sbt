@@ -17,5 +17,8 @@ libraryDependencies ++= Seq(
 
   // Odczytywanie HTML
   // https://github.com/themillhousegroup/scoup
-  "com.themillhousegroup" %% "scoup" % "0.4.6"
+  "com.themillhousegroup" %% "scoup" % "0.4.6",
+
+  // Typesafe config
+  "com.typesafe" % "config" % "1.3.2"
 )
